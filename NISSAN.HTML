@@ -9,26 +9,138 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>LYNCH INDUSTRY</title>
+    <style>
+      #cart-notification {
+          display: none;
+          position: fixed;
+          top: 20px;
+          margin-top: 8%;
+          right: 20px;
+          background-color: #4caf50;
+          color: white;
+          padding: 10px;
+          border-radius: 5px;
+      }
+      .hide {
+          opacity: 0;
+          transition: opacity 0.5s;
+      }
+  </style>
+
 </head>
 <body>
-      <!--Navbar-->
-
-      <nav class="navbar navbar-default" >
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">   <img src="img/LOGO.png" style="width: 110px; height: 90px; margin-top: -27%; margin-left: -16px;"></a> 
+  <navbar>
+    <div class="navbar nav navbar-fixed-top navbar-inverse">
+      <div class="container-fluid">
+        <div class="v-flex">
+          <div class="navbar-body">
+            <div class="navbar-start">
+              <div class="hamburger-menu">
+                <div class="ic_menu">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                          </div>
+              </div>
+              <img class="logo" src="img logo/Sin título-2.png" style=" margin-left: -55%; width: 90px; height: 70px;">
+            </div>
+            <div class="search" >
+              <input type="text" class="search-textbox" placeholder="Search" >
+              <a class="ico-btn search-btn"><i class="material-icons ic_search"><img src="img/ico-btn search-btn.png" style="width: 24px; height: 18px;"></i></a>
+              <a class="ico-btn clear-btn"><i class="material-icons ic_clear"><img src="img/cerrar.png" style="width: 24px; height: 18px;"></i></a>
+            </div>
+            <div class="navbar-end">
+              <a style="text-transform: uppercase" href="view-list.html"> <img src="img/anadir-al-carrito.png" style="width: 20px; height: 20px;"> shopping cart</a>
+            </div>
           </div>
-          <ul class="nav navbar-nav" >
-            <li  ><a href="index.html">Home</a></li>
-            <li><a href="Productos.html">Product</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Policies</a></li>
-          </ul>
-          <DIV class="BUSCAR">  <input type="text" class="tb" placeholder="BUSCAR" style="width: 320px;" ><input type="button" class="btn" value="search"></DIV>
-
         </div>
-      </nav>
-      <h2 style="margin-left: 10%;">DEPORTIVO</h2>
+      </div>
+    </div>
+    <div class="navbar navbar-fixed-top navbar-inverse tabs paper-shadow-bottom-z-2">
+      <div class="container-fluid">
+        <ul class="navbar-body list-inline">
+          <li class="active"><a class="active" href="index.html">Home</a></li>
+          <li><a href="Productos.html">Product</a></li>
+          <li><a>Contact</a></li>
+          <li><a>Policies</a></li>
+        </ul>
+        <div class="tab-highlighter"></div>
+      </div>
+    </div>
+    <!--2 navbar for pushing 1 above after scrolling (Not Implemented yet.)-->
+  </navbar>
+
+<script>
+  
+/*Textbox Events*/
+$(document).on('focusin', 'navbar input.search-textbox', function(){
+    if($(this).val() <= 0){
+        var parent = $(this).closest('div.search');
+        parent.addClass('focused');
+    }
+});
+$(document).on('focusout', 'navbar input.search-textbox', function(){
+    if($(this).val() <= 0){
+        var parent = $(this).closest('div.search');
+        parent.removeClass('focused');
+    }
+});
+$(document).on('click', 'navbar .search', function(){
+    $(this).children('input.search-textbox').focus();
+});
+
+/*Text Key Events for Animating Icons i.e. .ico-btn*/
+$(document).on('keyup', 'navbar input.search-textbox', function(){
+    var parent = $(this).closest('div.search');
+    var phrase = $(this).val(),
+        phrase_length = phrase.length;
+
+    if(phrase_length >= 2){
+        parent.addClass('multi-char');
+        if(!parent.hasClass('not-null')){
+            parent.addClass('not-null');
+        }
+
+    }
+    else if(phrase_length == 1){
+        parent.addClass('not-null');
+        parent.removeClass('multi-char');
+    }
+    else if(phrase_length <= 0){
+        parent.removeClass('not-null');
+        parent.removeClass('multi-char');
+    }
+});
+
+/*Tab Highlighter Functionality*/
+$(document).on('click', 'navbar .tabs ul.navbar-body li a', function(){
+    var $this = $(this);
+    TabHighlighter.set($this);
+    $this.closest('li').siblings('.active').removeClass('active');
+    $this.closest('li').addClass('active');
+});
+var TabHighlighter = {
+    set: function($this){
+        $('.tab-highlighter').css({
+            'left':  $this.closest('li').offset().left,
+            'width': $this.closest('li').outerWidth()
+        });
+    },
+    refresh: function(){
+        var $this = $('.tabs ul.navbar-body li.active a');
+        $('.tab-highlighter').css({
+            'left':  $this.closest('li').offset().left,
+            'width': $this.closest('li').outerWidth()
+        });
+    }
+};
+$(window).resize(function(){
+    TabHighlighter.refresh();
+});
+$(document).ready(function(){
+	TabHighlighter.refresh();
+});
+</script>
 <!--ASIDE CARTS OF BUY-->
 
 <aside class="carts" style="margin-top: 40%; ">
@@ -47,93 +159,100 @@
 
 <!--cards of buy ONE-->
       <div class="card_p">
-        <img src="autos/NISSAN/R32/GTR R-34 red.png" alt="Denim Jeans" style="width:120%; margin-left: -8%;">
-        <h3>NISSAN SKILINE <br>GTR R-34</h3>
-        <p class="price">$19.99</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea, blanditiis totam sequi dolore sed ipsam.</p>
-        <div class="btn_add_toCard" > <p><button class="btn_add">Add to Cart</button></p></div>
- 
- 
-        <!--details product-->
-        <div class="btn_container_details" style="margin-top: -14.6%;">   
-        <button href="#" class="btn_details" value="">Details Product</button>
+        <img src="autos/NISSAN/R32/Sin título-2.png" alt="Denim Jeans" style="width:120%; margin-left: -8%;">
+        <b><h3 class="product-name">SRT HELLCAT JAILBREAK</h3></b>
+        <b><p class="price" data-price="30000">$30,000.00</p></b>
+        <div class="new_btn_add_toCard" style=" margin-left: 5px;"> <p><button style="border-radius: 10%;" id="new_btn" class="btn_add" ><span style="border-radius: 25%;"> Add to Cart</span></button></p></div>
+    
+        <!--details product -->
+    <div class="btn_container_details" style=" margin-top: -14.6%;">   
+       <a href="SRT HELLCAT JAILBREAK.HTML"> <button href="#" class="btn_details" value="">Details Product</button></a>
     </div>
-    <!--finish-->      </div>
+    <!--finish-->
+    <div id="cart-notification">Product added to cart!</div>
+    
+    </div>
       
 <!--cards of buy TWO-->
-<div class="card_p" style="margin-left: 38.8%; margin-top:-32.5%;">
-    <img src="autos/TOYOTA/SUPRA/SUPRA GR 45TH Anniversary Edition.png" alt="Denim Jeans" style="width:110%; margin-left: -6%;">
-    <h3>SUPRA GR 45TH Anniversary Edition</h3>
-    <p class="price">$19.99</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea, blanditiis totam sequi dolore sed ipsam.</p>
-   <br>
-   
-   <br>
-   <div class="btn_add_toCard" > <p><button class="btn_add">Add to Cart</button></p></div>
- 
- 
-   <!--details product-->
-   <div class="btn_container_details" style="margin-top: -14.6%;">   
-   <button href="#" class="btn_details" value="">Details Product</button>
+<div class="card_p" style="margin-left: 38.8%; margin-top:-25.5%;">
+    <img src="autos/NISSAN/R32/iris (1).avif" alt="Denim Jeans" style="width:110%; margin-left: -8%;">
+    <b><h3 class="product-name">SRT HELLCAT JAILBREAK</h3></b>
+    <b><p class="price" data-price="30000">$30,000.00</p></b>
+    <div class="new_btn_add_toCard" style=" margin-left: 5px;"> <p><button style="border-radius: 10%;" id="new_btn" class="btn_add" ><span style="border-radius: 25%;"> Add to Cart</span></button></p></div>
+
+    <!--details product -->
+<div class="btn_container_details" style=" margin-top: -14.6%;">   
+   <a href="SRT HELLCAT JAILBREAK.HTML"> <button href="#" class="btn_details" value="">Details Product</button></a>
+</div>
+<!--finish-->
+<div id="cart-notification">Product added to cart!</div>
+
 </div>
 <!--finish-->  </div>
   
 <!--cards of buy THEREE-->
-<div class="card_p" style="margin-left: 67.8%; margin-top:-30.6%;">
-    <img src="autos/TOYOTA/SUPRA/GR86 TRUENO Edition.png" alt="Denim Jeans" style="width:110%; margin-left: -6%;">
-    <h3>GR86 TRUENO Edition</h3>
-    <p class="price">$19.99</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea, blanditiis totam sequi dolore sed ipsam.</p>
-   <br>
-   <br>
-   <div class="btn_add_toCard" > <p><button class="btn_add">Add to Cart</button></p></div>
- 
- 
-   <!--details product-->
-   <div class="btn_container_details" style="margin-top: -14.6%;">   
-   <button href="#" class="btn_details" value="">Details Product</button>
+<div class="card_p" style="margin-left: 67.8%; margin-top:-25.6%;">
+    <img src="autos/NISSAN/R32/NISSAN Z SPORT.avif" alt="Denim Jeans" style="width:110%; margin-left: -6%;">
+    <b><h3 class="product-name">SRT HELLCAT JAILBREAK</h3></b>
+    <b><p class="price" data-price="30000">$30,000.00</p></b>
+    <div class="new_btn_add_toCard" style=" margin-left: 5px;"> <p><button style="border-radius: 10%;" id="new_btn" class="btn_add" ><span style="border-radius: 25%;"> Add to Cart</span></button></p></div>
+
+    <!--details product -->
+<div class="btn_container_details" style=" margin-top: -14.6%;">   
+   <a href="SRT HELLCAT JAILBREAK.HTML"> <button href="#" class="btn_details" value="">Details Product</button></a>
 </div>
-<!--finish-->  </div>
+<!--finish-->
+<div id="cart-notification">Product added to cart!</div>
+
+</div>
   
 <!--cards of buy FOUR-->
-<div class="card_p" style="margin-top: 6%;">
-    <img src="autos/TOYOTA/SUPRA/SUPRA GR PRIMIUM.png" alt="Denim Jeans" style="width:130%; margin-left: -15%;">
-    <h3>SUPRA GR PRIMIUM</h3>
-    <p class="price">$19.99</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea, blanditiis totam sequi dolore sed ipsam.</p>
-    <div class="btn_add_toCard" > <p><button class="btn_add">Add to Cart</button></p></div>
- 
- 
-    <!--details product-->
-    <div class="btn_container_details" style="margin-top: -14.6%;">   
-    <button href="#" class="btn_details" value="">Details Product</button>
+<div class="card_p" style="margin-top: 5%; margin-bottom: 10%">
+    <img src="autos/NISSAN/R32/NISSAN Z NISMO.avif" alt="Denim Jeans" style="width:130%; margin-left: -15%;">
+    <b><h3 class="product-name">SRT HELLCAT JAILBREAK</h3></b>
+    <b><p class="price" data-price="30000">$30,000.00</p></b>
+    <div class="new_btn_add_toCard" style=" margin-left: 5px;"> <p><button style="border-radius: 10%;" id="new_btn" class="btn_add" ><span style="border-radius: 25%;"> Add to Cart</span></button></p></div>
+
+    <!--details product -->
+<div class="btn_container_details" style=" margin-top: -14.6%;">   
+   <a href="SRT HELLCAT JAILBREAK.HTML"> <button href="#" class="btn_details" value="">Details Product</button></a>
 </div>
-<!--finish-->  </div>
+<!--finish-->
+<div id="cart-notification">Product added to cart!</div>
+
+</div>
 
   <!--cards of buy FIVE-->
-<div class="card_p" style="margin-top: -32.9%; margin-left: 38.9%;">
-    <img src="autos/TOYOTA/SUPRA/SUPRA GR 3.0.png" alt="Denim Jeans" style="width:130%; margin-left: -15%;">
-    <h3>SUPRA GR 3.0</h3>
-    <p class="price">$19.99</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea, blanditiis totam sequi dolore sed ipsam.</p>
-    <div class="btn_add_toCard" > <p><button class="btn_add">Add to Cart</button></p></div>
- 
- 
-    <!--details product-->
-    <div class="btn_container_details" style="margin-top: -14.6%;">   
-    <button href="#" class="btn_details" value="">Details Product</button>
+<div class="card_p" style="margin-top: -37.5%; margin-left: 38.9%;">
+    <img src="autos/NISSAN/R32/NISSAN SKYLINE EDITION.avif" alt="Denim Jeans" style="width:130%; margin-left: -15%;">
+    <b><h3 class="product-name">SRT HELLCAT JAILBREAK</h3></b>
+    <b><p class="price" data-price="30000">$30,000.00</p></b>
+    <div class="new_btn_add_toCard" style=" margin-left: 5px;"> <p><button style="border-radius: 10%;" id="new_btn" class="btn_add" ><span style="border-radius: 25%;"> Add to Cart</span></button></p></div>
+
+    <!--details product -->
+<div class="btn_container_details" style=" margin-top: -14.6%;">   
+   <a href="SRT HELLCAT JAILBREAK.HTML"> <button href="#" class="btn_details" value="">Details Product</button></a>
 </div>
-<!--finish-->  </div>
+<!--finish-->
+<div id="cart-notification">Product added to cart!</div>
 
-<hr><h2 style="margin-left: 10%;">FAMILIARES</h2></hr>
+</div>
 
 
-  <footer class="PAGE">
 
-    <img src="img/LOGO.png" style="width: 200px; height: 180px; "> 
-    <IMG src="img/LOGO NEGRO.png" VALUE="" CLASS="LOGO2" style="width: 240px; height: 220px;">
-    
+<div>
+  <footer class="footer">
+    <div class="footer-content">
+      <p>© 2024 STARKCAR. Todos los derechos reservados.</p>
+      <ul class="social-icons">
+        <li><a href="#"><img src="img/facebook.png" alt="Facebook"></a></li>
+        <li><a href="#"><img src="img/twitter.png" alt="Twitter"></a></li>
+        <li><a href="#"><img src="img/instagram.png" alt="Instagram"></a></li>
+        <li><a href="#"><img src="img/whatsapp.png" alt="What´sApp" style="margin-top: -5px; margin-left: -10px; height: 35px; width: 35px;"></a></li>
+      </ul>
+    </div>
   </footer>
+</div>
 
 
 
