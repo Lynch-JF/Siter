@@ -243,6 +243,93 @@ $(document).ready(function(){
 
 </div>
 
+<!-- JavaScript -->
+<script>
+  // Añadir eventos a los botones de añadir al carrito
+  document.querySelectorAll('.btn_add').forEach(button => {
+      button.addEventListener('click', function() {
+          const productCard = button.closest('.card_p');
+          const productName = productCard.querySelector('.product-name').textContent;
+          const productPrice = parseFloat(productCard.querySelector('.price').getAttribute('data-price'));
+          addToCart(productName, productPrice);
+      });
+  });
+
+  // Función para añadir el producto al carrito
+  function addToCart(productName, productPrice) {
+      let product = {
+          name: productName,
+          price: productPrice
+      };
+
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push(product);
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      // Mostrar notificación
+      showNotification(`${productName} ha sido añadido al carrito.`);
+
+      // Actualizar la lista de productos en el carrito
+      updateCartItems();
+
+      // Actualizar el total del carrito
+      updateCartTotal();
+
+      // Actualizar el contador de productos en el carrito
+      updateCartCount();
+  }
+
+  // Función para mostrar notificación
+  function showNotification(message) {
+      const notification = document.getElementById('cart-notification');
+      notification.textContent = message;
+      notification.style.display = 'block';
+      setTimeout(() => {
+          notification.classList.add('hide');
+          setTimeout(() => {
+              notification.style.display = 'none';
+              notification.classList.remove('hide');
+          }, 500); // Espera que termine la transición
+      }, 2000); // Muestra la notificación durante 2 segundos
+  }
+
+  // Función para actualizar la lista de productos en el carrito
+  function updateCartItems() {
+      const cartItemsContainer = document.getElementById('cart-items');
+      if (cartItemsContainer) {
+          cartItemsContainer.innerHTML = ''; // Limpiar la lista actual
+
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+          cart.forEach(product => {
+              const listItem = document.createElement('li');
+              listItem.textContent = `${product.name} - $${product.price.toFixed(2)}`;
+              cartItemsContainer.appendChild(listItem);
+          });
+      }
+  }
+
+  // Función para actualizar el total del carrito
+  function updateCartTotal() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let total = cart.reduce((sum, product) => sum + product.price, 0);
+      document.querySelector('.TOTAL').textContent = `$${total.toFixed(2)}`;
+  }
+
+  // Función para actualizar el contador de productos en el carrito
+  function updateCartCount() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      document.getElementById('cart-count').textContent = cart.length;
+  }
+
+  // Al cargar la página, actualizar el total del carrito, los items y el contador visualmente
+  document.addEventListener('DOMContentLoaded', () => {
+      updateCartTotal();
+      updateCartItems();
+      updateCartCount();
+  });
+</script>
+
 
 <div>
   <footer class="footer">
