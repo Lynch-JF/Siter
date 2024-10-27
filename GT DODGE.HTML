@@ -14,57 +14,49 @@
     <title>STARKCAR</title>
 </head>
 <body>
-      <!--Navbar-->
-      <navbar>
-        <div class="navbar nav navbar-fixed-top navbar-inverse">
-          <div class="container-fluid">
-            <div class="v-flex">
-              <div class="navbar-body">
-                <div class="navbar-start">
-                  <div class="hamburger-menu">
-                    <div class="ic_menu">
-      
-                                  <span></span>
-                                  <span></span>
-                                  <span></span>
-                              </div>
-                  </div>
-                </div>
-                <div class="search" style="margin-top: -2%;" >
-                  <input type="text" class="search-textbox" placeholder="Search">
-                  
-                <a class="ico-btn search-btn"><i class="material-icons ic_search">&#xE8B6;</i></a>
-                  <a class="ico-btn clear-btn"><i class="material-icons ic_clear">&#xE14C;</i></a>
-                </div>
-      
-                <div class="navbar-end">
-                  <a style="text-transform: uppercase">Login</a>
-      
-                </div>
+  <navbar>
+    <div class="navbar nav navbar-fixed-top navbar-inverse">
+      <div class="container-fluid">
+        <div class="v-flex">
+          <div class="navbar-body">
+            <div class="navbar-start">
+              <div class="hamburger-menu">
+                <div class="ic_menu">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                          </div>
               </div>
+              <img class="logo" src="img logo/326.png" style=" margin-left: -55%; width: 130px; height: 115px; margin-top: -7%;">
             </div>
-            <img class="logo" src="img logo/326.png" style=" margin-left: -55%; width: 130px; height: 115px; margin-top: -7%;">
-      
+            <div class="search" style="margin-top: -2%;" >
+              <input type="text" class="search-textbox" placeholder="Search" >
+              <a class="ico-btn search-btn"><i class="material-icons ic_search"><img src="img/ico-btn search-btn.png" style="width: 24px; height: 18px;"></i></a>
+              <a class="ico-btn clear-btn"><i class="material-icons ic_clear"><img src="img/cerrar.png" style="width: 24px; height: 18px;"></i></a>
+            </div>
+            <div class="navbar-end">
+              <a style="text-transform: uppercase" href="view-list.html"> <img src="img/anadir-al-carrito.png" style="width: 20px; height: 20px;"> shopping cart</a>
+            </div>
           </div>
         </div>
-      
-        <div class="navbar navbar-fixed-top navbar-inverse tabs paper-shadow-bottom-z-2">
-          <div class="container-fluid">
-            <ul class="navbar-body list-inline">
-              <li class="active"><a href="index.html" class="active">Home</a></li>
-              <li><a href="Productos.html">Product</a></li>
-              <li><a href="">Contac</a></li>
-              <li><a href="">Policies</a></li>
-            </ul>
-            <div class="tab-highlighter"></div>
-          </div>
-        </div>
-        <!--2 navbar for pushing 1 above after scrolling (Not Implemented yet.)-->
-      </navbar>
-
+      </div>
+    </div>
+    <div class="navbar navbar-fixed-top navbar-inverse tabs paper-shadow-bottom-z-2">
+      <div class="container-fluid">
+        <ul class="navbar-body list-inline">
+          <li class="active"><a class="active" href="index.html">Home</a></li>
+          <li><a href="Productos.html">Product</a></li>
+          <li><a>Contact</a></li>
+          <li><a>Policies</a></li>
+        </ul>
+        <div class="tab-highlighter"></div>
+      </div>
+    </div>
+    <!--2 navbar for pushing 1 above after scrolling (Not Implemented yet.)-->
+  </navbar>
 
 <script>
-
+  
 /*Textbox Events*/
 $(document).on('focusin', 'navbar input.search-textbox', function(){
     if($(this).val() <= 0){
@@ -133,9 +125,6 @@ $(window).resize(function(){
 $(document).ready(function(){
 	TabHighlighter.refresh();
 });
-
-
-
 </script>
 
       
@@ -156,7 +145,7 @@ $(document).ready(function(){
 <div class="row-name">
   <div class="column-name">
     <div class="card-name">
-      <h3><b>DODGE CHALLENGER R-T SCAT PACK W</b></h3>
+      <h3><b>DODGE CHALLENGER GT</b></h3>
       <h3 style="color: red;">$72,000.00</h3>
       <div class="btn_add_toCard"> <p><button class="btn_add" id="add_product">Add to Cart</button></p></div>
 
@@ -401,6 +390,19 @@ leftBtn.addEventListener("click", () => {
 
 
 
+<div>
+  <footer class="footer">
+    <div class="footer-content">
+      <p>© 2024 STARKCAR. Todos los derechos reservados.</p>
+      <ul class="social-icons">
+        <li><a href="#"><img src="img/facebook.png" alt="Facebook"></a></li>
+        <li><a href="#"><img src="img/twitter.png" alt="Twitter"></a></li>
+        <li><a href="#"><img src="img/instagram.png" alt="Instagram"></a></li>
+        <li><a href="#"><img src="img/whatsapp.png" alt="What´sApp" style="margin-top: -5px; margin-left: -10px; height: 35px; width: 35px;"></a></li>
+      </ul>
+    </div>
+  </footer>
+</div>
 
 
 </body>

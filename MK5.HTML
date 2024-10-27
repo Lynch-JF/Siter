@@ -143,12 +143,21 @@
 <div class="row-name">
   <div class="column-name">
     <div class="card-name">
-      <h3><b>DODGE CHALLENGER R-T SCAT PACK W</b></h3>
-      <h3 style="color: red;">$72,000.00</h3>
-      <div class="btn_add_toCard"> <p><button class="btn_add" id="add_product">Add to Cart</button></p></div>
-
+      <b><h3 class="product-name">TOYOTA SUPRA MK5</h3></b>
+      <b><p style="color: red;" class="price" data-price="256900">$256,900.00</p></b>
+      <br>  
+      
+      <!-- Botón "Add to Cart" -->
+      <div class="new_btn_add_toCard">
+        <button class="btn_add" id="add_product">
+          <span> Add to Cart </span>
+        </button>
+      </div>
     </div>
   </div>
+  <div id="cart-notification" style="display:none;"></div>
+
+</div>
 
 
   <div class="container">
@@ -271,7 +280,91 @@
 
 
 
-
+  <script>
+    // Añadir eventos a los botones de añadir al carrito
+    document.querySelectorAll('.btn_add').forEach(button => {
+        button.addEventListener('click', function() {
+            const productCard = button.closest('.card-name'); // Encuentra la tarjeta del producto
+            const productName = productCard.querySelector('.product-name').textContent; // Obtiene el nombre del producto
+            const productPrice = parseFloat(productCard.querySelector('.price').getAttribute('data-price')); // Obtiene el precio del producto
+            addToCart(productName, productPrice); // Añade el producto al carrito
+        });
+    });
+  
+    // Función para añadir el producto al carrito
+    function addToCart(productName, productPrice) {
+        let product = {
+            name: productName,
+            price: productPrice
+        };
+  
+        // Obtener el carrito del almacenamiento local o inicializar un nuevo carrito
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(product); // Agregar el nuevo producto al carrito
+        localStorage.setItem('cart', JSON.stringify(cart)); // Guardar el carrito actualizado en localStorage
+  
+        // Mostrar notificación
+        showNotification(`${productName} ha sido añadido al carrito.`);
+  
+        // Actualizar el carrito visualmente
+        updateCartItems();
+        updateCartTotal();
+        updateCartCount();
+    }
+  
+    // Función para mostrar la notificación de que se añadió el producto al carrito
+    function showNotification(message) {
+        const notification = document.getElementById('cart-notification');
+        notification.textContent = message;
+        notification.style.display = 'block';
+  
+        // Ocultar la notificación después de 2 segundos
+        setTimeout(() => {
+            notification.classList.add('hide');
+            setTimeout(() => {
+                notification.style.display = 'none';
+                notification.classList.remove('hide');
+            }, 500); // Espera que termine la transición de ocultar
+        }, 2000); // Tiempo visible de la notificación
+    }
+  
+    // Función para actualizar la lista de productos en el carrito
+    function updateCartItems() {
+        const cartItemsContainer = document.getElementById('cart-items');
+        if (cartItemsContainer) {
+            cartItemsContainer.innerHTML = ''; // Limpiar la lista actual
+  
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+            cart.forEach(product => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${product.name} - $${product.price.toFixed(2)}`;
+                cartItemsContainer.appendChild(listItem);
+            });
+        }
+    }
+  
+    // Función para actualizar el total del carrito
+    function updateCartTotal() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let total = cart.reduce((sum, product) => sum + product.price, 0);
+        document.querySelector('.TOTAL').textContent = `$${total.toFixed(2)}`;
+    }
+  
+    // Función para actualizar el contador de productos en el carrito
+    function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        document.getElementById('cart-count').textContent = cart.length;
+    }
+  
+    // Al cargar la página, actualizar el total del carrito, los items y el contador visualmente
+    document.addEventListener('DOMContentLoaded', () => {
+        updateCartTotal();
+        updateCartItems();
+        updateCartCount();
+    });
+  </script>
+  
 
 
 
