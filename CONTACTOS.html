@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootswatch Theme -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Css/index.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="icon" type="image/x-icon" href="img logo/icono.ico">
+
+    <title> STARKCAR</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="Css/CARD PRODUCT.CSS">
+    <link rel="stylesheet" href="Css/details product.css">
+    <link rel="stylesheet" href="Css/index.css">
+    
+</head>
+
+<body>  <navbar>
+    <div class="navbar nav navbar-fixed-top navbar-inverse">
+      <div class="container-fluid">
+        <div class="v-flex">
+          <div class="navbar-body">
+            <div class="navbar-start">
+              <div class="hamburger-menu">
+                <div class="ic_menu">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                          </div>
+              </div>
+              <img class="logo" src="img logo/326.png" style=" margin-left: -55%; width: 130px; height: 115px; margin-top: -7%;">
+            </div>
+            <div class="search" style="margin-top: -2%;" >
+              <input type="text" class="search-textbox" placeholder="Search" >
+              <a class="ico-btn search-btn"><i class="material-icons ic_search"><img src="img/ico-btn search-btn.png" style="width: 24px; height: 18px;"></i></a>
+              <a class="ico-btn clear-btn"><i class="material-icons ic_clear"><img src="img/cerrar.png" style="width: 24px; height: 18px;"></i></a>
+            </div>
+            <div class="navbar-end">
+              <a style="text-transform: uppercase" href="view-list.html"> <img src="img/anadir-al-carrito.png" style="width: 20px; height: 20px;"> shopping cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-fixed-top navbar-inverse tabs paper-shadow-bottom-z-2">
+      <div class="container-fluid">
+        <ul class="navbar-body list-inline">
+          <li class="active"><a class="active" href="index.html">Home</a></li>
+          <li><a href="Productos.html">Product</a></li>
+          <li onclick="myFunction()"><a href="CONTACTOS.html">Contact</a></li>
+          <li><a>Policies</a></li>
+        </ul>
+        <div class="tab-highlighter"></div>
+      </div>
+    </div>
+    <!--2 navbar for pushing 1 above after scrolling (Not Implemented yet.)-->
+  </navbar>
+
+  <script>
+    function myFunction() {
+      alert("Welcome!!, you can contact me at the following number 809-931-3720");
+    }
+    </script>
+
+<script>
+  
+/*Textbox Events*/
+$(document).on('focusin', 'navbar input.search-textbox', function(){
+    if($(this).val() <= 0){
+        var parent = $(this).closest('div.search');
+        parent.addClass('focused');
+    }
+});
+$(document).on('focusout', 'navbar input.search-textbox', function(){
+    if($(this).val() <= 0){
+        var parent = $(this).closest('div.search');
+        parent.removeClass('focused');
+    }
+});
+$(document).on('click', 'navbar .search', function(){
+    $(this).children('input.search-textbox').focus();
+});
+
+/*Text Key Events for Animating Icons i.e. .ico-btn*/
+$(document).on('keyup', 'navbar input.search-textbox', function(){
+    var parent = $(this).closest('div.search');
+    var phrase = $(this).val(),
+        phrase_length = phrase.length;
+
+    if(phrase_length >= 2){
+        parent.addClass('multi-char');
+        if(!parent.hasClass('not-null')){
+            parent.addClass('not-null');
+        }
+
+    }
+    else if(phrase_length == 1){
+        parent.addClass('not-null');
+        parent.removeClass('multi-char');
+    }
+    else if(phrase_length <= 0){
+        parent.removeClass('not-null');
+        parent.removeClass('multi-char');
+    }
+});
+
+/*Tab Highlighter Functionality*/
+$(document).on('click', 'navbar .tabs ul.navbar-body li a', function(){
+    var $this = $(this);
+    TabHighlighter.set($this);
+    $this.closest('li').siblings('.active').removeClass('active');
+    $this.closest('li').addClass('active');
+});
+var TabHighlighter = {
+    set: function($this){
+        $('.tab-highlighter').css({
+            'left':  $this.closest('li').offset().left,
+            'width': $this.closest('li').outerWidth()
+        });
+    },
+    refresh: function(){
+        var $this = $('.tabs ul.navbar-body li.active a');
+        $('.tab-highlighter').css({
+            'left':  $this.closest('li').offset().left,
+            'width': $this.closest('li').outerWidth()
+        });
+    }
+};
+$(window).resize(function(){
+    TabHighlighter.refresh();
+});
+$(document).ready(function(){
+	TabHighlighter.refresh();
+});
+</script>
+   
+
+
+    <div class="container">
+        <!-- APPLICATION -->
+        <div id="App" class="row pt-5">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>FORM OF CONTACT</h4>
+                    </div>
+                    <form id="product-form" class="card-body">
+                        <div class="form-group">
+                            <h6>NAME </h6>
+                            <input type="text" id="name" placeholder="Product Name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <h6>AGE</h6>
+                            <input type="number" id="price" step="0.01" placeholder="Product Price" class="form-control">
+                        </div>
+                    
+                        <div class="form-group">
+                            <h6>Fecha de produccion</h6>
+                            <input type="number" id="year" min="1900" max="2099" step="1" value="2022" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <h6>Fecha de vencimiento</h6>
+                            <input type="number" id="yearv" min="1900" max="2099" step="1" value="2022" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <h6>Nombre de proveedor</h6>
+                            <input type="text" id="proveedor" step="0.01" placeholder="Proveedor" class="form-control">
+                        </div>
+                        <br>
+                        <input type="submit" value="Save" class="btn btn-primary btn-block">
+                    </form>
+                </div>
+            </div>
+
+            <div id="product-list" class="col-md-8"></div>
+        </div>
+    </div>
+
+    <script src="JS/App.js"></script>
+</body>
+
+</html>
