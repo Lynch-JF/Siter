@@ -521,13 +521,14 @@ navbar .tabs .navbar-body li{
 }
 navbar .tabs .navbar-body li:hover{
     background: rgba(0,0,0,0.02);
+margin-top: 30px;
 }
 navbar .tabs .navbar-body li:active{
     background: rgba(0,0,0,0.05);
 }
 navbar .tabs .navbar-body li a:hover, .tabs .navbar-body li a:active{
-    background: rgba(0,0,0,0);
-    color: #388be9;
+    background-image: linear-gradient(to right, black , red);
+    color: #ffffff;
 }
 
 /*Styling Tab Highlighter*/
