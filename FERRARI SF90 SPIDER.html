@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Css/index.css">
+    <link rel="stylesheet" href="Css/CARD PRODUCT.CSS">
+    <link rel="stylesheet" href="Css/details product.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="img logo/icono.ico">
+
+    <title>STARKCAR</title>
+</head>
+<body>
+      <!--Navbar-->
+      <navbar>
+        <div class="navbar nav navbar-fixed-top navbar-inverse">
+          <div class="container-fluid">
+            <div class="v-flex">
+              <div class="navbar-body">
+                <div class="navbar-start">
+                  <div class="hamburger-menu">
+                    <div class="ic_menu">
+                                  <span></span>
+                                  <span></span>
+                                  <span></span>
+                              </div>
+                  </div>
+                  <img class="logo" src="img logo/326.png" style=" margin-left: -55%; width: 130px; height: 115px; margin-top: -7%;">
+                </div>
+                <div class="search" style="margin-top: -2%;" >
+                  <input type="text" class="search-textbox" placeholder="Search" >
+                  <a class="ico-btn search-btn"><i class="material-icons ic_search"><img src="img/ico-btn search-btn.png" style="width: 24px; height: 18px;"></i></a>
+                  <a class="ico-btn clear-btn"><i class="material-icons ic_clear"><img src="img/cerrar.png" style="width: 24px; height: 18px;"></i></a>
+                </div>
+                <div class="navbar-end">
+                  <a style="text-transform: uppercase" href="view-list.html"> <img src="img/anadir-al-carrito.png" style="width: 20px; height: 20px;"> shopping cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="navbar navbar-fixed-top navbar-inverse tabs paper-shadow-bottom-z-2">
+          <div class="container-fluid">
+            <ul class="navbar-body list-inline">
+              <li class="active"><a class="active" href="index.html">Home</a></li>
+              <li><a href="Productos.html">Product</a></li>
+              <li><a>Contact</a></li>
+              <li><a>Policies</a></li>
+            </ul>
+            <div class="tab-highlighter"></div>
+          </div>
+        </div>
+        <!--2 navbar for pushing 1 above after scrolling (Not Implemented yet.)-->
+      </navbar>
+      
+<!--ASIDE CARTS OF BUY-->
+
+ <!-- Cart Section -->
+  <aside class="carts" style="margin-top: 40%;">
+    <div class="carts__container">
+        <a id="carts_view" class="viewer" href="view-list.html" style="color: aliceblue;">View list</a>
+        <h4 class="TOTAL" style="margin-bottom: 20%;">$0.00</h4>
+        <p>Items in Cart: <span id="cart-count">0</span></p> <!-- Contador de productos -->
+        <div class="finish">
+            <a href="#" class="finish__btn" style="color: aliceblue;">Finish</a>
+        </div>
+    </div>
+</aside>
+
+<!-- Card del producto -->
+<div class="row-name">
+  <div class="column-name">
+    <div class="card-name">
+      <b><h3 class="product-name">FERRARI SF90 SPIDER</h3></b>
+      <b><p style="color: red;" class="price" data-price="2000000">$2,000,000.00</p></b>
+      <br>  
+      
+      <!-- Botón "Add to Cart" -->
+      <div class="new_btn_add_toCard">
+        <button class="btn_add" id="add_product">
+          <span> Add to Cart </span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="cart-notification" style="display:none;"></div>
+
+</div>
+
+
+  <div class="container">
+    <div class="mySlides">
+      <img src="autos/FERRARI/FERRARI spider.png" class="imgr" style="width:50%; margin-top: -50%; margin-left: 20%;">
+    </div>
+  
+    <div class="mySlides">
+      <img class="imgr"  src="autos/" style="width:40%; margin-top: -50%; margin-left: 20%;">
+    </div>
+  
+    <div class="mySlides">
+      <img class="imgr" src="autos/" style="width:40%; margin-top: -50%; margin-left: 10%;">
+    </div>
+      
+    <div class="mySlides">
+      <img class="imgr"  src="autos/" style="width:40%; margin-top: -50%; margin-left: 10%;">
+    </div>
+  
+    <div class="mySlides">
+      <img  class="imgr" src="autos/" style="width:40%; margin-top: -50%; margin-left: 10%;">
+    </div>
+      
+    <div class="mySlides">
+      <img class="imgr" src="autos/" style="width:40%; margin-top: -50%; margin-left: 10%;">
+    </div>
+      
+ 
+  
+    
+  
+    <!--<div class="scrolling-buttons-container">
+        <span id="scrolling-button-left">👈</span>
+        <span id="scrolling-button-right">👉</span>
+      </div>-->
+
+    
+  
+</div>
+ 
+<div class="row-scrolling">
+    <div class="scrolling">
+      <img class="demo cursor" class="imgr"  src="autos/FERRARI/FERRARI spider.png" style="width:100%" onclick="currentSlide(1)" >
+    </div>
+   
+  </div>
+
+  
+  <div class="row-details" style="margin-top: 5%;">
+  <div class="column-details">
+    <div class="card-details">
+     <h3 style="text-align: center; "><b> Details of car</b></h3>
+     <details>
+        <summary style="cursor: pointer;"> <h4>Motor/Rendimiento</h4></summary>
+        <p>
+          <b>Motor:</b> 3.0 litros V6 biturbo (VR30DDTT) ajustado por NISMO<br><br>
+          <b>Potencia:</b> 420 caballos de fuerza<br><br>
+          <b>Torque:</b> 384 lb-pie (520 Nm)<br><br>
+          <b>Transmisión:</b> Automática de 9 velocidades con modo manual y levas al volante<br><br>
+          <b>Aceleración (0-60 mph):</b> Aproximadamente 4.3 segundos<br><br>
+          <b>Tracción:</b> Tracción trasera (RWD)<br><br>
+          <b>Velocidad máxima:</b> Alrededor de 160 mph (257 km/h)</p>
+      </details>
+      
+      <details>
+        <summary style="cursor: pointer;"> <h4>Dimensión/Peso</h4></summary>
+        <p>
+          <b>Longitud:</b> 172.6 pulgadas (4384 mm)<br><br>
+          <b>Ancho:</b> 72.8 pulgadas (1849 mm)<br><br>
+          <b>Altura:</b> 51.6 pulgadas (1311 mm)<br><br>
+          <b>Distancia entre Ejes:</b> 100.4 pulgadas (2550 mm)<br><br>
+          <b>Peso en Vacío:</b> Aproximadamente 3630 libras (1646 kg)</p>
+      </details>
+      
+      <details>
+        <summary style="cursor: pointer;"> <h4>Suspensión/Frenos</h4></summary>
+        <p>
+          <b>Suspensión Delantera:</b> Doble horquilla independiente ajustada por NISMO<br><br>
+          <b>Suspensión Trasera:</b> Multi-link independiente ajustada por NISMO<br><br>
+          <b>Frenos:</b> Discos ventilados con pinzas Brembo de cuatro pistones en el frente y dos pistones en la parte trasera</p>
+      </details>
+      
+      <details>
+        <summary style="cursor: pointer;"> <h4>Ruedas/Neumáticos</h4></summary>
+        <p>
+          <b>Ruedas:</b> Llantas de aleación forjadas de 19 pulgadas NISMO<br><br>
+          <b>Neumáticos:</b> Dunlop SP Sport Maxx GT600, tamaño 285/35ZR19 en el frente y 305/30ZR19 en la parte trasera</p>
+      </details>
+      
+      <details>
+        <summary style="cursor: pointer;"> <h4>Características Especiales</h4></summary>
+        <p>
+          <b>Aerodinámica:</b> Kit aerodinámico exclusivo NISMO con alerón trasero, difusor, y splitter frontal<br><br>
+          <b>Interior:</b> Asientos deportivos Recaro con detalles en rojo, volante NISMO de gamuza y costuras rojas<br><br>
+          <b>Pantalla:</b> Pantalla táctil de 9 pulgadas con Apple CarPlay, Android Auto y sistema de sonido premium Bose<br><br>
+          <b>Modos de Conducción:</b> Modo NISMO optimizado para rendimiento en pista</p>
+      </details>
+          
+      
+        </div>
+ 
+   
+      </div>
+
+  
+  </div>
+
+
+
+  <script>
+    // Añadir eventos a los botones de añadir al carrito
+    document.querySelectorAll('.btn_add').forEach(button => {
+        button.addEventListener('click', function() {
+            const productCard = button.closest('.card-name'); // Encuentra la tarjeta del producto
+            const productName = productCard.querySelector('.product-name').textContent; // Obtiene el nombre del producto
+            const productPrice = parseFloat(productCard.querySelector('.price').getAttribute('data-price')); // Obtiene el precio del producto
+            addToCart(productName, productPrice); // Añade el producto al carrito
+        });
+    });
+  
+    // Función para añadir el producto al carrito
+    function addToCart(productName, productPrice) {
+        let product = {
+            name: productName,
+            price: productPrice
+        };
+  
+        // Obtener el carrito del almacenamiento local o inicializar un nuevo carrito
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(product); // Agregar el nuevo producto al carrito
+        localStorage.setItem('cart', JSON.stringify(cart)); // Guardar el carrito actualizado en localStorage
+  
+        // Mostrar notificación
+        showNotification(`${productName} ha sido añadido al carrito.`);
+  
+        // Actualizar el carrito visualmente
+        updateCartItems();
+        updateCartTotal();
+        updateCartCount();
+    }
+  
+    // Función para mostrar la notificación de que se añadió el producto al carrito
+    function showNotification(message) {
+        const notification = document.getElementById('cart-notification');
+        notification.textContent = message;
+        notification.style.display = 'block';
+  
+        // Ocultar la notificación después de 2 segundos
+        setTimeout(() => {
+            notification.classList.add('hide');
+            setTimeout(() => {
+                notification.style.display = 'none';
+                notification.classList.remove('hide');
+            }, 500); // Espera que termine la transición de ocultar
+        }, 2000); // Tiempo visible de la notificación
+    }
+  
+    // Función para actualizar la lista de productos en el carrito
+    function updateCartItems() {
+        const cartItemsContainer = document.getElementById('cart-items');
+        if (cartItemsContainer) {
+            cartItemsContainer.innerHTML = ''; // Limpiar la lista actual
+  
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+            cart.forEach(product => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${product.name} - $${product.price.toFixed(2)}`;
+                cartItemsContainer.appendChild(listItem);
+            });
+        }
+    }
+  
+    // Función para actualizar el total del carrito
+    function updateCartTotal() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let total = cart.reduce((sum, product) => sum + product.price, 0);
+        document.querySelector('.TOTAL').textContent = `$${total.toFixed(2)}`;
+    }
+  
+    // Función para actualizar el contador de productos en el carrito
+    function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        document.getElementById('cart-count').textContent = cart.length;
+    }
+  
+    // Al cargar la página, actualizar el total del carrito, los items y el contador visualmente
+    document.addEventListener('DOMContentLoaded', () => {
+        updateCartTotal();
+        updateCartItems();
+        updateCartCount();
+    });
+  </script>
+
+
+
+
+
+  <script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+    
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+    
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+    
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      let dots = document.getElementsByClassName("demo");
+      let captionText = document.getElementById("caption");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active";
+      captionText.innerHTML = dots[slideIndex-1].alt;
+    }
+    </script>
+
+
+<script>
+const rightBtn = document.querySelector("#scrolling-button-right");
+const leftBtn = document.querySelector("#scrolling-button-left");
+
+const content = document.querySelector(".scrolling-container");
+
+rightBtn.addEventListener("click", () => {
+  content.scrollLeft += 800;
+});
+
+leftBtn.addEventListener("click", () => {
+  content.scrollLeft -= 800;
+});
+</script>
+
+
+</body>
+</html>
+</html>
