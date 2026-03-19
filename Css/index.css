@@ -1,182 +1,102 @@
-/* =========================================
-   1. RESET Y CONFIGURACIÓN BASE
-   ========================================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* CRITICO: Evita que el padding rompa el ancho */
+/* Configuración de Fondo y Base */
+.main-bg {
+    background-image: url('SRT Hellcat Wallpaper.jpeg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow-x: hidden; /* Evita scroll horizontal no deseado */
-    line-height: 1.6;
-}
-
-/* =========================================
-   2. HEADER Y NAVEGACIÓN (RESPONSIVE)
-   ========================================= */
-header {
-    width: 100%;
-    height: 70px;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 5%;
-    box-shadow: 0 2px 10px rgba(255, 0, 0, 0.2);
-}
-
-.logo { font-size: 1.5rem; font-weight: bold; }
-
-/* Contenedor de búsqueda ajustable */
-.BUSCAR {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.BUSCAR input {
-    height: 33px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-/* =========================================
-   3. CONTENEDOR DE CARTAS (GRID DINÁMICO)
-   ========================================= */
-.cont {
+/* El contenedor de las cartas ahora es un GRID */
+.products-grid {
     display: grid;
-    /* Esto crea columnas automáticas de mínimo 280px */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Se ajusta solo */
     gap: 30px;
-    padding: 100px 5% 50px 5%; /* Espacio para el header fixed */
+    padding: 150px 5% 50px 5%;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Estilo de la carta Flip */
-.cupter {
-    position: relative;
-    width: 100%; /* Se adapta al grid */
-    height: 380px;
-    perspective: 1000px;
-    margin: 0 auto;
-}
-
-.cupter .face {
-    position: absolute;
+/* Estilo para el Hero (Sección del logo y carros de arriba) */
+.hero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 100px;
     width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 10px;
-    overflow: hidden;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-.cupter .front {
-    transform: rotateY(0deg);
+.main-logo-img {
+    max-width: 400px;
+    width: 80%;
+    height: auto;
 }
 
-.cupter .back {
-    transform: rotateY(180deg);
-    background: white;
+.hero-cars {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+}
+
+.hero-cars img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(5px 5px 15px rgba(0,0,0,0.5));
+}
+
+/* Ajustes de Navbar para móviles */
+.navbar-custom {
+    width: 100%;
+    z-index: 2000;
+}
+
+.nav-container {
+    display: flex;
     justify-content: space-between;
-    padding: 20px;
-    text-align: center;
+    align-items: center;
+    padding: 10px 5%;
+    background: rgba(0,0,0,0.9);
 }
 
-/* Hover effects */
-.cupter:hover .front { transform: rotateY(180deg); }
-.cupter:hover .back { transform: rotateY(360deg); }
-
-.img-cards {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* =========================================
-   4. BOTONES Y DETALLES
-   ========================================= */
-.btn-btn, .btn_add {
-    background-color: black;
-    color: white;
-    border: 2px solid black;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: 0.3s;
-    text-decoration: none;
-    display: inline-block;
-    width: 100%;
-    margin-top: 10px;
-}
-
-.btn-btn:hover {
-    background-color: white;
-    color: black;
-}
-
-/* =========================================
-   5. FOOTER RESPONSIVE
-   ========================================= */
-.footer {
-    background-color: #333;
-    color: white;
-    padding: 40px 5%;
-    text-align: center;
-}
-
-.social-icons {
+.nav-links {
     display: flex;
     justify-content: center;
-    gap: 20px;
     list-style: none;
-    margin-top: 15px;
+    background: #111;
+    padding: 10px 0;
 }
 
-.logo40 {
-    width: 50px;
-    height: 50px;
-    animation: rotar 7s linear infinite;
+.nav-links li a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
 }
 
-/* =========================================
-   6. MEDIA QUERIES (AJUSTES FINALES)
-   ========================================= */
+/* Botón de ver más */
+.view-more-container {
+    text-align: center;
+    margin-bottom: 50px;
+}
 
-/* Tablets */
+/* Media Queries para pantallas pequeñas */
 @media (max-width: 768px) {
-    header {
+    .hero {
         flex-direction: column;
-        height: auto;
-        padding: 15px;
+        text-align: center;
     }
-    .BUSCAR { margin-top: 10px; }
-    .cont { padding-top: 150px; }
-}
+    
+    .nav-container {
+        flex-direction: column;
+        gap: 10px;
+    }
 
-/* Móviles pequeños */
-@media (max-width: 480px) {
-    .logo { font-size: 1.2rem; }
-    .cupter { height: 320px; }
-    .BUSCAR input { width: 150px; }
-}
+    .search-box {
+        width: 100%;
+    }
 
-/* Animaciones */
-@keyframes rotar {
-    from { transform: rotateY(0deg); }
-    to { transform: rotateY(-360deg); }
-}
-
-@keyframes slidein {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
+    .products-grid {
+        grid-template-columns: 1fr; /* Una carta por fila en celular */
+        padding-top: 220px;
+    }
 }
